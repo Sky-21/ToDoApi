@@ -6,7 +6,8 @@ module.exports = {
   async store(req, res){
     const { title } = req.body
 
-    const ver = await connection('categories').where('title', title).select('*')
+    const ver = await connection('categories').where('title', title).select('*').first()
+    console.log(ver)
     if(ver){
       return res.status(405).json({error: 'Essa categoria Já existe'})
     }
